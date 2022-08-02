@@ -1,6 +1,73 @@
-﻿namespace Store.Entities;
+﻿using Store.Entities.Enums;
 
-public class Order
+namespace Store.Entities;
+
+public class Order : BaseEntity
 {
+    #region Private
 
+    private IList<OrderItem> _ordersItems;
+
+    #endregion
+
+    #region Contructors
+
+    public Order(Customer customer, Discount discount, decimal deliveryFee)
+    {
+        Customer = customer;
+        Date = DateTime.Now;
+        Number = Guid.NewGuid().ToString().Substring(0, 8);
+        Status = EOrderStatus.WaitingPayment;
+        Discount = discount;
+        DeliveryFee = deliveryFee;
+    }
+
+    #endregion
+
+    #region Properties
+
+    public Customer Customer { get; private set; }
+    public DateTime Date { get; private set; }
+    public string Number { get; private set; }
+    public IEnumerable<OrderItem> OrderItems { get { return _ordersItems; } }
+    public EOrderStatus Status { get; private set; }
+    public Discount Discount { get; private set; }
+    public decimal DeliveryFee { get; private set; }
+
+    #endregion
+
+    #region Methods
+
+    public void AddItem(Product product, int quantity)
+    {
+        _ordersItems.Add(new OrderItem(product, quantity));
+    }
+
+    public decimal Total()
+    {
+        decimal total = 0;
+
+        foreach (var item in OrderItems)
+        {
+            total += item.Total();
+        }
+
+        total += DeliveryFee;
+        total -= Discount != null ? Discount.Value() : 0;
+
+        return total;
+    }
+
+    public void Pay(decimal amount)
+    {
+        if (amount == Total())
+            Status = EOrderStatus.WaitingDelivery;
+    }
+
+    public void Cancel()
+    {
+        Status = EOrderStatus.Canceled;
+    }
+
+    #endregion
 }

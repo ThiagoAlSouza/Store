@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Store.Entities
 {
-    internal class OrderItem : BaseEntity
+    public class OrderItem : BaseEntity
     {
         #region Constructors
 
-        public OrderItem(Product product, decimal price, int quantity)
+        public OrderItem(Product product, int quantity)
         {
             Product = product;
             Price = product != null ? product.Price : 0;
