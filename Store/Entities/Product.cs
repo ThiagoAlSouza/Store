@@ -15,9 +15,9 @@ public class Product : BaseEntity
 
     #region properties
 
-    public string Title { get; set; }
-    public decimal Price { get; set; }
-    public bool Active { get; set; }
+    public string Title { get; private set; }
+    public decimal Price { get; private set; }
+    public bool Active { get; private set; }
 
     #endregion
 }
