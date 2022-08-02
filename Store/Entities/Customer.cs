@@ -1,6 +1,6 @@
 ﻿namespace Store.Entities;
 
-public class Customer
+public class Customer : BaseEntity
 {
     #region Contructors
 
