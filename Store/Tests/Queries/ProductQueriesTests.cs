@@ -1,6 +1,5 @@
 ﻿using Store.Entities;
 using Store.Queries;
-using Store.Repository;
 
 namespace Store.Tests.Queries;
 
