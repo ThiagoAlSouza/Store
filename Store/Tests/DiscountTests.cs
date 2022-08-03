@@ -4,9 +4,11 @@ namespace Store.Tests;
 
 public class DiscountTests
 {
+    #region Methods
+
     [Theory]
     [InlineData("2022, 08, 02")]
-    public void ShouldReturnErrorWhenDiscountIsNotValid(DateTime date) 
+    public void ShouldReturnErrorWhenDiscountIsNotValid(DateTime date)
     {
         var discount = new Discount(60, new DateTime(2022, 08, 02));
 
@@ -20,4 +22,6 @@ public class DiscountTests
 
         Assert.True(discount.IsValid());
     }
+
+    #endregion
 }
