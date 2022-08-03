@@ -1,4 +1,7 @@
-﻿using Store.Entities.Enums;
+﻿
+using Flunt.Notifications;
+using Flunt.Validations;
+using Store.Entities.Enums;
 
 namespace Store.Entities;
 
@@ -14,6 +17,10 @@ public class Order : BaseEntity
 
     public Order(Customer customer, Discount discount, decimal deliveryFee)
     {
+        AddNotifications(new Contract<Notification>()
+            .Requires()
+            .IsNotNull(customer, "Custommer", "Customer is null."));
+
         Customer = customer;
         Date = DateTime.Now;
         Number = Guid.NewGuid().ToString().Substring(0, 8);
@@ -40,7 +47,10 @@ public class Order : BaseEntity
 
     public void AddItem(Product product, int quantity)
     {
-        _ordersItems.Add(new OrderItem(product, quantity));
+        var oderItem = new OrderItem(product, quantity);
+
+        if (oderItem.IsValid)
+            _ordersItems.Add(oderItem);
     }
 
     public decimal Total()

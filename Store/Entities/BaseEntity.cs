@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Flunt.Notifications;
 
 namespace Store.Entities
 {
-    public abstract class BaseEntity
+    public abstract class BaseEntity : Notifiable<Notification>
     {
         #region Constructos
 

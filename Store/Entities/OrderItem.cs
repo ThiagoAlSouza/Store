@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Flunt.Notifications;
+using Flunt.Validations;
 
 namespace Store.Entities
 {
@@ -12,6 +14,12 @@ namespace Store.Entities
 
         public OrderItem(Product product, int quantity)
         {
+            AddNotifications(new Contract<Notification>()
+                .Requires()
+                .IsNotNull(product, "Product", "Customer is null.")
+                .IsGreaterThan(quantity, 0 , "Quantity", "The quantity should be greater than zero."));
+
+
             Product = product;
             Price = product != null ? product.Price : 0;
             Quantity = quantity;
