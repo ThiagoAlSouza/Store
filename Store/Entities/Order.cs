@@ -27,6 +27,7 @@ public class Order : BaseEntity
         Status = EOrderStatus.WaitingPayment;
         Discount = discount;
         DeliveryFee = deliveryFee;
+        _ordersItems = new List<OrderItem>();
     }
 
     #endregion
