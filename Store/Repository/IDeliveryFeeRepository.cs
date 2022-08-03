@@ -2,5 +2,5 @@
 
 public interface IDeliveryFeeRepository
 {
-    decimal GetFee(decimal zipCode);
+    decimal GetFee(string zipCode);
 }
