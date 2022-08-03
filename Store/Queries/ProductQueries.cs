@@ -10,7 +10,7 @@ public static class ProductQueries
         return x => x.Active;
     }
 
-    public static Expression<Func<Product, bool>> GetInativeProducts()
+    public static Expression<Func<Product, bool>> GetInactivateProducts()
     {
         return x => !x.Active;
     }

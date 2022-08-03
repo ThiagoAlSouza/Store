@@ -1,6 +1,6 @@
 ﻿using Store.Entities;
 
-namespace Store.Tests;
+namespace Store.Tests.Entities;
 
 public class OrderItemTests
 {

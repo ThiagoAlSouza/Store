@@ -1,7 +1,7 @@
 ﻿using Store.Entities;
 using Store.Entities.Enums;
 
-namespace Store.Tests;
+namespace Store.Tests.Entities;
 
 public class OrderTests
 {
