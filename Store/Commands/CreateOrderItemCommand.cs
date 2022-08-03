@@ -29,8 +29,8 @@ public class CreateOrderItemCommand : Notifiable<Notification>, ICommand
     {
         AddNotifications(new Contract<Notification>()
             .Requires()
-            .IsGreaterThan(Product.ToString(), 32, "Product", " Invalid Product.")
-            .IsGreaterThan(Quantity, 0, "Quantity", " Invalid Quantity.")
+            .IsGreaterOrEqualsThan(Product.ToString().Length, 32, "Product", " Invalid Product.")
+            .IsGreaterOrEqualsThan(Quantity, 0, "Quantity", " Invalid Quantity.")
         );
     }
 

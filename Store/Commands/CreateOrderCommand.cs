@@ -8,12 +8,18 @@ public class CreateOrderCommand : Notifiable<Notification>, ICommand
 {
     #region Contructor
 
-    public CreateOrderCommand(string customer, string zipCode, string promoCode, IList<CreateOrderCommand> createOrderCommands)
+    public CreateOrderCommand()
+    {
+        CreateOrderItemCommandsCommands = new List<CreateOrderItemCommand>();
+    }
+
+    public CreateOrderCommand(string customer, string zipCode, string promoCode,
+        IList<CreateOrderItemCommand> createOrderItemCommandsCommands)
     {
         Customer = customer;
         ZipCode = zipCode;
         PromoCode = promoCode;
-        CreateOrderCommands = createOrderCommands;
+        CreateOrderItemCommandsCommands = createOrderItemCommandsCommands;
     }
 
     #endregion
@@ -23,7 +29,7 @@ public class CreateOrderCommand : Notifiable<Notification>, ICommand
     public string Customer { get; set; }
     public string ZipCode { get; set; }
     public string PromoCode { get; set; }
-    public IList<CreateOrderCommand> CreateOrderCommands { get; set; }
+    public IList<CreateOrderItemCommand> CreateOrderItemCommandsCommands { get; set; }
 
     #endregion
 
@@ -33,8 +39,8 @@ public class CreateOrderCommand : Notifiable<Notification>, ICommand
     {
         AddNotifications(new Contract<Notification>()
             .Requires()
-            .IsGreaterThan(Customer, 11, "Customer", " Invalid Customer")
-            .IsGreaterThan(ZipCode, 8, "ZipCode", " Invalid CEP")
+            .IsGreaterOrEqualsThan(Customer.Length, 11, "Customer", " Invalid Customer")
+            .IsGreaterOrEqualsThan(ZipCode.Length, 8, "ZipCode", " Invalid CEP")
         );
     }
 
