@@ -7,7 +7,7 @@ public class FakeDiscountRepository : IDiscountRepository
 {
     public Discount Get(string code)
     {
-        if (code.Equals("4321"))
+        if (code.Equals("10203040"))
             return new Discount(10, DateTime.Now.AddDays(3));
 
         if (code.Equals("1234"))

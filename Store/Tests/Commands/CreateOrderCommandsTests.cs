@@ -4,6 +4,8 @@ namespace Store.Tests.Commands;
 
 public class CreateOrderCommandsTests
 {
+    #region Methods
+
     [Fact]
     public void WhenACommandIsInvalidTheOrderCantBeProcess()
     {
@@ -33,4 +35,6 @@ public class CreateOrderCommandsTests
 
         Assert.True(orderCommand.IsValid);
     }
+
+    #endregion
 }

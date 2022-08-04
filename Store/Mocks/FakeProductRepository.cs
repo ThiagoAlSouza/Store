@@ -5,7 +5,7 @@ namespace Store.Mocks;
 
 public class FakeProductRepository : IProductRepository
 {
-    public IEnumerable<Product> Get(IEnumerable<Product> ids)
+    public IEnumerable<Product> Get(IEnumerable<Guid> ids)  
     {
         IList<Product> products = new List<Product>();
 

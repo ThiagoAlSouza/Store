@@ -7,7 +7,7 @@ public class FakeCustomerRepository : ICustomerRepository
 {
     public Customer Get(string document)
     {
-        if (document == "4321")
+        if (document == "Thiagoalves")
             return new Customer("Thiago", "thiagoalsouza98@outlook.com");
         
         return null;
