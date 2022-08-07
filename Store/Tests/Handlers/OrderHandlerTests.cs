@@ -31,7 +31,20 @@ public class OrderHandlerTests
 
     #region Methods
 
-    //Implementar demais métodos
+    [Fact]
+    public void WhenACustomerNotExistTheOrderCantBeProcess()
+    {
+        var itemList = new List<CreateOrderItemCommand>
+        {
+            new CreateOrderItemCommand(Guid.NewGuid(), 1),
+            new CreateOrderItemCommand(Guid.NewGuid(), 2)
+        };
+
+        var orderCommand = new CreateOrderCommand("Thiagoalve", "82739164", string.Empty, itemList);
+        orderCommand.Validate();
+
+        Assert.True(!orderCommand.IsValid);
+    }
 
     [Fact]
     public void WhenACommandIsInvalidTheOrderCantBeProcess()
