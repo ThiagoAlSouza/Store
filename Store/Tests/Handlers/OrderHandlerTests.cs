@@ -47,6 +47,20 @@ public class OrderHandlerTests
     }
 
     [Fact]
+    public void WhenACepInvalidTheOrderCantBeProcess()
+    {
+        var itemList = new List<CreateOrderItemCommand>
+        {
+            new CreateOrderItemCommand(Guid.NewGuid(), 1)
+        };
+
+        var orderCommand = new CreateOrderCommand("Thiago alves", "8273916", string.Empty, itemList);
+        orderCommand.Validate();
+
+        Assert.True(!orderCommand.IsValid);
+    }
+
+    [Fact]
     public void WhenACommandIsInvalidTheOrderCantBeProcess()
     {
         var itemList = new List<CreateOrderItemCommand>
