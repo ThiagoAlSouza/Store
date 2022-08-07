@@ -19,7 +19,8 @@ public class Order : BaseEntity
     {
         AddNotifications(new Contract<Notification>()
             .Requires()
-            .IsNotNull(customer, "Custommer", "Customer is null."));
+            .IsNotNull(customer, "Custommer", "Customer is null.")
+            .IsNotNull(discount, "Discount", "discount is null."));
 
         Customer = customer;
         Date = DateTime.Now;

@@ -98,5 +98,28 @@ public class OrderHandlerTests
         Assert.True(handler.IsValid);
     }
 
+    [Fact]
+    public void WhenAPromoCodeIsInvalidTheOrderCantBeProcess()  
+    {
+        var itemList = new List<CreateOrderItemCommand>
+        {
+            new CreateOrderItemCommand(Guid.NewGuid(), 3),
+            new CreateOrderItemCommand(Guid.NewGuid(), 6)
+        };
+
+        var orderCommand = new CreateOrderCommand("Thiagoalves", "10203040", "1454", itemList);
+        orderCommand.Validate();
+
+        var handler = new OrderHandler(
+            _customerRepository,
+            _productRepository,
+            _discountRepository,
+            _orderRepository,
+            _deliveryFeeRepository);
+
+        handler.Handle(orderCommand);
+        Assert.True(!handler.IsValid);
+    }
+
     #endregion
 }
