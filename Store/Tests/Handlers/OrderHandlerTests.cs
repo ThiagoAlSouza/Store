@@ -120,6 +120,5 @@ public class OrderHandlerTests
         handler.Handle(orderCommand);
         Assert.True(!handler.IsValid);
     }
-
     #endregion
 }

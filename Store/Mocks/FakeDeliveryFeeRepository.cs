@@ -4,6 +4,8 @@ namespace Store.Mocks;
 
 public class FakeDeliveryFeeRepository : IDeliveryFeeRepository
 {
+    #region Methods
+
     public decimal GetFee(string zipCode)
     {
         if (zipCode.Equals("10203040"))
@@ -11,4 +13,6 @@ public class FakeDeliveryFeeRepository : IDeliveryFeeRepository
 
         return 0;
     }
+
+    #endregion
 }
